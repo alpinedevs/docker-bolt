@@ -1,5 +1,5 @@
 FROM        ubuntu:16.04
-MAINTAINER  Ross Riley "riley.ross@gmail.com"
+MAINTAINER  Alpine CS "support@alpinedevs.com"
 
 # Install nginx
 ENV HOME /root
@@ -11,7 +11,7 @@ RUN locale-gen en_US.UTF-8 && \
 RUN dpkg-reconfigure locales
 
 # Install PHP7 and modules along with composer binary
-RUN apt-get -y install php7.0-fpm php7.0-pgsql php7.0-mcrypt php7.0-curl php7.0-gd php7.0-json php7.0-cli php-ssh2 php7.0-sqlite php7.0-mbstring php7.0-xml
+RUN apt-get -y install php7.0-fpm php7.0-pgsql php7.0-mcrypt php7.0-curl php7.0-gd php7.0-json php7.0-cli php-ssh2 php7.0-sqlite php7.0-mbstring php7.0-xml vim
 RUN sed -i -e "s/short_open_tag = Off/short_open_tag = On/g" /etc/php/7.0/fpm/php.ini
 RUN sed -i -e "s/post_max_size = 8M/post_max_size = 20M/g" /etc/php/7.0/fpm/php.ini
 RUN sed -i -e "s/upload_max_filesize = 2M/upload_max_filesize = 20M/g" /etc/php/7.0/fpm/php.ini
@@ -22,7 +22,7 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN mkdir /var/run/php
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php/7.0/fpm/php.ini
 RUN echo "max_input_vars = 10000;" >> /etc/php/7.0/fpm/php.ini
-RUN echo "date.timezone = Europe/London;" >> etc/php/7.0/fpm/php.ini
+RUN echo "date.timezone = America/Los_Angeles;" >> etc/php/7.0/fpm/php.ini
 
 # Setup supervisor
 COPY supervisor/nginx.conf /etc/supervisor/conf.d/
